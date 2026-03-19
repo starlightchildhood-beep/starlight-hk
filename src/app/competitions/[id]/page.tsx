@@ -1,16 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
-  return [
-    { id: 'art-2026-01' },
-    { id: 'music-2026-01' },
-    { id: 'stem-2026-01' },
-    { id: 'speech-2026-01' },
-    { id: 'dance-2026-01' },
-    { id: 'writing-2026-01' },
-  ];
-}
+export const runtime = 'edge';
 
 const competitions: Record<string, {
   icon: string;
