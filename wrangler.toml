@@ -1,5 +1,0 @@
-# Cloudflare Pages - NO wrangler deploy command
-# Just build static files, Cloudflare Pages will handle deployment
-
-[site]
-bucket = "./out"
