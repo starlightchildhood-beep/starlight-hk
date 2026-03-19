@@ -23,6 +23,10 @@ const config: Config = {
           gray: "#E8E6E1",
         },
         rosegold: "#B76E79",
+        fresh: {
+          blue: "#3B82F6",
+          green: "#10B981",
+        },
       },
       fontFamily: {
         cormorant: ["var(--font-cormorant)", "serif"],

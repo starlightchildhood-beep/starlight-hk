@@ -127,11 +127,17 @@ export default function Competitions() {
             </span>
           </Link>
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/competitions" className="text-starlight-gold">
+            <Link href="/competitions" className="text-midnight/70 hover:text-starlight-gold transition-colors">
               比賽項目
             </Link>
-            <Link href="/about" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
+            <Link href="/news" className="text-midnight/70 hover:text-starlight-gold transition-colors">
+              最新資訊
+            </Link>
+            <Link href="/about" className="text-midnight/70 hover:text-starlight-gold transition-colors">
               關於我們
+            </Link>
+            <Link href="/contact" className="text-midnight/70 hover:text-starlight-gold transition-colors">
+              聯絡我們
             </Link>
           </div>
           <Link href="/competitions" className="btn-gold text-sm">
