@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Montserrat, Noto_Sans_HK } from "next/font/google";
+import { Inter, Playfair_Display, Noto_Sans_HK } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const montserrat = Montserrat({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-playfair",
+  display: "swap",
 });
 
 const notoSansHK = Noto_Sans_HK({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-noto-sans-hk",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -46,13 +49,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
   openGraph: {
     type: "website",
@@ -62,24 +58,6 @@ export const metadata: Metadata = {
     title: "香港星光童學會 | 總有一個舞台，適合你的孩子",
     description:
       "香港星光童學會是一個專注於香港兒童發展的平台，為孩子提供多元化的比賽機會。",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "香港星光童學會",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "香港星光童學會 | 總有一個舞台，適合你的孩子",
-    description:
-      "香港星光童學會是一個專注於香港兒童發展的平台，為孩子提供多元化的比賽機會。",
-    images: ["/og-image.jpg"],
-  },
-  alternates: {
-    canonical: "https://starlight-hk.pages.dev",
   },
 };
 
@@ -89,12 +67,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-Hant" className="light">
+    <html lang="zh-Hant">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${cormorant.variable} ${montserrat.variable} ${notoSansHK.variable} font-noto antialiased bg-moonlight text-midnight min-h-screen`}
+        className={`${inter.variable} ${playfair.variable} ${notoSansHK.variable} font-sans antialiased`}
       >
         {children}
       </body>

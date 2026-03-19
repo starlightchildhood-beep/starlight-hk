@@ -10,31 +10,46 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        midnight: {
-          DEFAULT: "#0F1629",
-          light: "#1a2744",
+        primary: {
+          DEFAULT: "#1E40AF",
+          light: "#3B82F6",
+          dark: "#1E3A8A",
         },
-        starlight: {
-          gold: "#D4AF37",
-          goldLight: "#E5C76B",
-        },
-        moonlight: {
-          DEFAULT: "#F8F6F0",
-          gray: "#E8E6E1",
-        },
-        rosegold: "#B76E79",
-        fresh: {
-          blue: "#3B82F6",
-          green: "#10B981",
+        accent: {
+          DEFAULT: "#F59E0B",
+          light: "#FBBF24",
+          dark: "#D97706",
         },
       },
       fontFamily: {
-        cormorant: ["var(--font-cormorant)", "serif"],
-        montserrat: ["var(--font-montserrat)", "sans-serif"],
-        noto: ["var(--font-noto-sans-hk)", "sans-serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        serif: ["Playfair Display", "Georgia", "serif"],
       },
       spacing: {
-        section: "5rem",
+        section: "6rem",
+        "section-lg": "8rem",
+      },
+      borderRadius: {
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+      },
+      boxShadow: {
+        card: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)",
+        "card-hover": "0 20px 40px rgba(0,0,0,0.1)",
+      },
+      animation: {
+        "fade-up": "fadeUp 0.6s ease-out forwards",
+        "fade-in": "fadeIn 0.4s ease-out forwards",
+      },
+      keyframes: {
+        fadeUp: {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
       },
     },
   },
