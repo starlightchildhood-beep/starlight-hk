@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 248 246 240;
+    --foreground: 15 22 41;
+  }
+
+  .dark {
+    --background: 15 22 41;
+    --foreground: 248 246 240;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gold-gradient {
+    @apply bg-gradient-to-r from-starlight-gold via-starlight-goldLight to-starlight-gold bg-clip-text text-transparent;
+  }
+
+  .btn-gold {
+    @apply bg-starlight-gold text-midnight font-semibold px-6 py-3 rounded-lg 
+           hover:bg-starlight-goldLight transition-all duration-300 ease-out;
+  }
+
+  .btn-outline-gold {
+    @apply border border-starlight-gold text-starlight-gold px-6 py-3 rounded-lg
+           hover:bg-starlight-gold hover:text-midnight transition-all duration-300 ease-out;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f1629;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e5c76b;
+}
