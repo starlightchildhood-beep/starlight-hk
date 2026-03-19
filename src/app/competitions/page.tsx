@@ -1,6 +1,118 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
+const categories = [
+  { name: "全部", icon: "✨", id: "all" },
+  { name: "視藝創作", icon: "🎨", id: "art" },
+  { name: "音樂演奏", icon: "🎵", id: "music" },
+  { name: "STEM科學", icon: "🔬", id: "stem" },
+  { name: "朗誦演說", icon: "🎤", id: "speech" },
+  { name: "舞蹈運動", icon: "💃", id: "dance" },
+  { name: "創意寫作", icon: "✍️", id: "writing" },
+];
+
+const competitions = [
+  {
+    id: "art-2026-01",
+    icon: "🎨",
+    category: "視藝創作",
+    categoryId: "art",
+    title: "全港兒童填色大賽 2026",
+    description: "發揮創意，用色彩描繪孩子心中的世界。適合幼兒至小學各年級學生參與。",
+    deadline: "2026年4月30日截止",
+    status: "報名中",
+    statusType: "open",
+    participants: 328,
+    ageGroups: ["學前PREN組", "K.1-K.3組", "P.1-P.2組", "P.3-P.4組", "P.5-P.6組"],
+    fee: "免費",
+    prize: "獎狀、獎牌、獎杯（自費）",
+  },
+  {
+    id: "music-2026-01",
+    icon: "🎹",
+    category: "音樂演奏",
+    categoryId: "music",
+    title: "青少年鋼琴大賽",
+    description: "為鋼琴小天才提供專業表演舞台，展示音樂才華。",
+    deadline: "2026年5月15日截止",
+    status: "報名中",
+    statusType: "open",
+    participants: 156,
+    ageGroups: ["P.1-P.2組", "P.3-P.4組", "P.5-P.6組", "中學組"],
+    fee: "免費",
+    prize: "獎狀、獎牌、獎杯（自費）",
+  },
+  {
+    id: "stem-2026-01",
+    icon: "🤖",
+    category: "STEM科學",
+    categoryId: "stem",
+    title: "小小發明家創作賽",
+    description: "激發孩子對科學探索的興趣，培養創新思維。",
+    deadline: "2026年5月1日截止",
+    status: "報名中",
+    statusType: "open",
+    participants: 89,
+    ageGroups: ["P.1-P.2組", "P.3-P.4組", "P.5-P.6組"],
+    fee: "免費",
+    prize: "獎狀、獎牌、獎杯（自費）",
+  },
+  {
+    id: "speech-2026-01",
+    icon: "🎤",
+    category: "朗誦演說",
+    categoryId: "speech",
+    title: "三語朗誦大賽",
+    description: "英語、粵語、普通話三語朗誦，培養語言表達能力。",
+    deadline: "2026年4月20日截止",
+    status: "報名中",
+    statusType: "open",
+    participants: 201,
+    ageGroups: ["學前PREN組", "K.1-K.3組", "P.1-P.2組", "P.3-P.4組", "P.5-P.6組"],
+    fee: "免費",
+    prize: "獎狀、獎牌、獎杯（自費）",
+  },
+  {
+    id: "dance-2026-01",
+    icon: "💃",
+    category: "舞蹈運動",
+    categoryId: "dance",
+    title: "兒童舞蹈大賽",
+    description: "芭蕾舞、現代舞、中國舞等多種舞蹈形式均可參加。",
+    deadline: "2026年6月1日截止",
+    status: "即將開始",
+    statusType: "soon",
+    participants: 0,
+    ageGroups: ["K.1-K.3組", "P.1-P.2組", "P.3-P.4組", "P.5-P.6組"],
+    fee: "免費",
+    prize: "獎狀、獎牌、獎杯（自費）",
+  },
+  {
+    id: "writing-2026-01",
+    icon: "✍️",
+    category: "創意寫作",
+    categoryId: "writing",
+    title: "創意寫作比賽",
+    description: "發揮想像力，創作出屬於自己的故事。",
+    deadline: "2026年5月10日截止",
+    status: "報名中",
+    statusType: "open",
+    participants: 124,
+    ageGroups: ["P.1-P.2組", "P.3-P.4組", "P.5-P.6組", "中學組"],
+    fee: "免費",
+    prize: "獎狀、獎牌、獎杯（自費）",
+  },
+];
+
 export default function Competitions() {
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const filteredCompetitions = competitions.filter(
+    (comp) => activeCategory === "all" || comp.categoryId === activeCategory
+  );
+
   return (
     <div className="min-h-screen">
       {/* Navigation */}
@@ -17,12 +129,6 @@ export default function Competitions() {
           <div className="hidden md:flex items-center gap-8">
             <Link href="/competitions" className="text-starlight-gold">
               比賽項目
-            </Link>
-            <Link href="/results" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
-              查詢結果
-            </Link>
-            <Link href="/shop" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
-              獎品商店
             </Link>
             <Link href="/about" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
               關於我們
@@ -49,30 +155,23 @@ export default function Competitions() {
       </section>
 
       {/* Category Filter */}
-      <section className="py-8 bg-midnight-light border-b border-starlight-gold/10">
+      <section className="py-8 bg-midnight-light border-b border-starlight-gold/10 sticky top-[72px] z-40">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap gap-3 justify-center">
-            <button className="bg-starlight-gold text-midnight px-4 py-2 rounded-full text-sm font-medium">
-              全部比賽
-            </button>
-            <button className="bg-midnight text-moonlight/70 px-4 py-2 rounded-full text-sm hover:bg-midnight-light transition-colors">
-              🎨 視藝創作
-            </button>
-            <button className="bg-midnight text-moonlight/70 px-4 py-2 rounded-full text-sm hover:bg-midnight-light transition-colors">
-              🎵 音樂演奏
-            </button>
-            <button className="bg-midnight text-moonlight/70 px-4 py-2 rounded-full text-sm hover:bg-midnight-light transition-colors">
-              🔬 STEM科學
-            </button>
-            <button className="bg-midnight text-moonlight/70 px-4 py-2 rounded-full text-sm hover:bg-midnight-light transition-colors">
-              🎤 朗誦演說
-            </button>
-            <button className="bg-midnight text-moonlight/70 px-4 py-2 rounded-full text-sm hover:bg-midnight-light transition-colors">
-              💃 舞蹈運動
-            </button>
-            <button className="bg-midnight text-moonlight/70 px-4 py-2 rounded-full text-sm hover:bg-midnight-light transition-colors">
-              ✍️ 創意寫作
-            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === cat.id
+                    ? "bg-starlight-gold text-midnight"
+                    : "bg-midnight text-moonlight/70 hover:bg-midnight-light"
+                }`}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.name}</span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -81,7 +180,7 @@ export default function Competitions() {
       <section className="py-section bg-midnight-light">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {competitions.map((comp, i) => (
+            {filteredCompetitions.map((comp, i) => (
               <div
                 key={i}
                 className="bg-midnight border border-starlight-gold/10 rounded-2xl overflow-hidden 
@@ -89,14 +188,14 @@ export default function Competitions() {
               >
                 <div className="aspect-video bg-gradient-to-br from-starlight-gold/20 to-rosegold/20 flex items-center justify-center relative">
                   <span className="text-7xl">{comp.icon}</span>
-                  {comp.status === "報名中" && (
+                  {comp.statusType === "open" && (
                     <span className="absolute top-4 right-4 bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">
-                      報名中
+                      {comp.status}
                     </span>
                   )}
-                  {comp.status === "即將開始" && (
+                  {comp.statusType === "soon" && (
                     <span className="absolute top-4 right-4 bg-starlight-gold/20 text-starlight-gold px-3 py-1 rounded-full text-xs">
-                      即將開始
+                      {comp.status}
                     </span>
                   )}
                 </div>
@@ -117,7 +216,7 @@ export default function Competitions() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-moonlight/40">
-                      {comp.participants} 位參賽者
+                      {comp.participants > 0 ? `${comp.participants} 位參賽者` : "報名即將開始"}
                     </span>
                     <Link
                       href={`/competitions/${comp.id}`}
@@ -131,6 +230,18 @@ export default function Competitions() {
               </div>
             ))}
           </div>
+
+          {filteredCompetitions.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-moonlight/50 text-lg">暫無此類別的比賽</p>
+              <button
+                onClick={() => setActiveCategory("all")}
+                className="mt-4 text-starlight-gold hover:underline"
+              >
+                查看所有比賽
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -155,66 +266,3 @@ export default function Competitions() {
     </div>
   );
 }
-
-const competitions = [
-  {
-    id: "art-2026-01",
-    icon: "🎨",
-    category: "視藝創作",
-    title: "全港兒童填色大賽 2026",
-    description: "發揮創意，用色彩描繪孩子心中的世界。適合幼兒至小學各年級學生參與。",
-    deadline: "2026年4月30日截止",
-    status: "報名中",
-    participants: 328,
-  },
-  {
-    id: "music-2026-01",
-    icon: "🎹",
-    category: "音樂演奏",
-    title: "青少年鋼琴大賽",
-    description: "為鋼琴小天才提供專業表演舞台，展示音樂才華。",
-    deadline: "2026年5月15日截止",
-    status: "報名中",
-    participants: 156,
-  },
-  {
-    id: "stem-2026-01",
-    icon: "🤖",
-    category: "STEM科學",
-    title: "小小發明家創作賽",
-    description: "激發孩子對科學探索的興趣，培養創新思維。",
-    deadline: "2026年5月1日截止",
-    status: "報名中",
-    participants: 89,
-  },
-  {
-    id: "speech-2026-01",
-    icon: "🎤",
-    category: "朗誦演說",
-    title: "三語朗誦大賽",
-    description: "英語、粵語、普通話三語朗誦，培養語言表達能力。",
-    deadline: "2026年4月20日截止",
-    status: "報名中",
-    participants: 201,
-  },
-  {
-    id: "dance-2026-01",
-    icon: "💃",
-    category: "舞蹈運動",
-    title: "兒童舞蹈大賽",
-    description: "芭蕾舞、現代舞、中國舞等多種舞蹈形式均可參加。",
-    deadline: "2026年6月1日截止",
-    status: "即將開始",
-    participants: 0,
-  },
-  {
-    id: "writing-2026-01",
-    icon: "✍️",
-    category: "創意寫作",
-    title: "創意寫作比賽",
-    description: "發揮想像力，創作出屬於自己的故事。",
-    deadline: "2026年5月10日截止",
-    status: "報名中",
-    participants: 124,
-  },
-];

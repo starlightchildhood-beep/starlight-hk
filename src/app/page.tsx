@@ -18,12 +18,6 @@ export default function Home() {
             <Link href="/competitions" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
               比賽項目
             </Link>
-            <Link href="/results" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
-              查詢結果
-            </Link>
-            <Link href="/shop" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
-              獎品商店
-            </Link>
             <Link href="/about" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
               關於我們
             </Link>
@@ -258,9 +252,6 @@ export default function Home() {
               </Link>
               <Link href="/terms" className="hover:text-starlight-gold transition-colors">
                 條款及細則
-              </Link>
-              <Link href="/contact" className="hover:text-starlight-gold transition-colors">
-                聯絡我們
               </Link>
             </div>
             <p className="text-sm text-moonlight/30">

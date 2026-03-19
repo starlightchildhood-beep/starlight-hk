@@ -18,12 +18,6 @@ export default function About() {
             <Link href="/competitions" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
               比賽項目
             </Link>
-            <Link href="/results" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
-              查詢結果
-            </Link>
-            <Link href="/shop" className="text-moonlight/80 hover:text-starlight-gold transition-colors">
-              獎品商店
-            </Link>
             <Link href="/about" className="text-starlight-gold">
               關於我們
             </Link>
